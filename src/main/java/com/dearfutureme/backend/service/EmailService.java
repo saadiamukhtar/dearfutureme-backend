@@ -49,7 +49,7 @@ public class EmailService {
             headers.set("Authorization", "Bearer " + apiKey);
 
             String htmlBody = buildEmailHtml(capsule);
-
+            log.info("Using sender email: {}", fromEmail);
             Map<String, Object> requestBody = Map.of(
                     "from", "Dear Future Me <" + fromEmail + ">",
                     "to", capsule.getEmail(),
