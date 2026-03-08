@@ -26,7 +26,7 @@ public class EmailService {
     @Value("${resend.api.url:https://api.resend.com/emails}")
     private String apiUrl;
 
-    @Value("${resend.from.email:noreply@sadiamukhtar.in}")
+    @Value("${RESEND_FROM_EMAIL:noreply@sadiamukhtar.in}")
     private String fromEmail;
 
     public EmailService(RestTemplate restTemplate) {
@@ -52,7 +52,7 @@ public class EmailService {
 
             Map<String, Object> requestBody = Map.of(
                     "from", "Dear Future Me <" + fromEmail + ">",
-                    "to", List.of(capsule.getEmail()),
+                    "to", capsule.getEmail(),
                     "subject", "A message from your past self has arrived",
                     "html", htmlBody
             );
