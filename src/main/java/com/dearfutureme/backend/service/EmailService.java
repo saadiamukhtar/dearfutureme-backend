@@ -17,13 +17,13 @@ public class EmailService {
 
     private final RestTemplate restTemplate;
 
-    @Value("${resend.api.key}")
+    @Value("${resend.api.key:}")
     private String apiKey;
 
-    @Value("${resend.api.url}")
+    @Value("${resend.api.url:https://api.resend.com/emails}")
     private String apiUrl;
 
-    @Value("${resend.from.email}")
+    @Value("${resend.from.email:}")
     private String fromEmail;
 
     public EmailService(RestTemplate restTemplate) {

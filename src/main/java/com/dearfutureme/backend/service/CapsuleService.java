@@ -22,7 +22,7 @@ public class CapsuleService {
     private final CapsuleRepository capsuleRepository;
     private final ClaudeService claudeService;
 
-    @Value("${app.test-mode}")
+    @Value("${app.test-mode:true}")
     private boolean testMode;
 
     /**

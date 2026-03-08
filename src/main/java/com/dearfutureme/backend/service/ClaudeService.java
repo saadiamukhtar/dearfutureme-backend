@@ -15,13 +15,13 @@ public class ClaudeService {
 
     private final RestTemplate restTemplate;
 
-    @Value("${anthropic.api.key}")
+    @Value("${anthropic.api.key:}")
     private String apiKey;
 
-    @Value("${anthropic.api.url}")
+    @Value("${anthropic.api.url:https://api.anthropic.com/v1/messages}")
     private String apiUrl;
 
-    @Value("${anthropic.model}")
+    @Value("${anthropic.model:claude-sonnet-4-20250514}")
     private String model;
 
     public ClaudeService(RestTemplate restTemplate) {
