@@ -1,10 +1,12 @@
 package com.dearfutureme.backend.service;
 
 import com.dearfutureme.backend.entity.Capsule;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.format.DateTimeFormatter;
@@ -17,17 +19,25 @@ public class EmailService {
 
     private final RestTemplate restTemplate;
 
-    @Value("${resend.api.key:}")
+    // Checks RESEND_API_KEY env var first, then property file
+    @Value("${RESEND_API_KEY:${resend.api.key:}}")
     private String apiKey;
 
     @Value("${resend.api.url:https://api.resend.com/emails}")
     private String apiUrl;
 
-    @Value("${resend.from.email:}")
+    // Checks RESEND_FROM_EMAIL env var first, then property file
+    @Value("${RESEND_FROM_EMAIL:${resend.from.email:}}")
     private String fromEmail;
 
     public EmailService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+    }
+
+    @PostConstruct
+    public void init() {
+        log.info("EmailService ready — from: '{}', apiUrl: {}, apiKey set: {}",
+                fromEmail, apiUrl, !apiKey.isBlank());
     }
 
     /**
