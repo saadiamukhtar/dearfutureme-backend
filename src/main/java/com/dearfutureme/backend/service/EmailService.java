@@ -52,7 +52,7 @@ public class EmailService {
             String htmlBody = buildEmailHtml(capsule);
 
             Map<String, Object> requestBody = Map.of(
-                    "from", fromEmail,
+                    "from", "Dear Future Me <" + fromEmail + ">",
                     "to", List.of(capsule.getEmail()),
                     "subject", "A message from your past self has arrived",
                     "html", htmlBody
