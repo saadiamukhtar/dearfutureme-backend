@@ -26,8 +26,7 @@ public class EmailService {
     @Value("${resend.api.url:https://api.resend.com/emails}")
     private String apiUrl;
 
-    // Checks RESEND_FROM_EMAIL env var first, then property file
-    @Value("${RESEND_FROM_EMAIL:${resend.from.email:}}")
+    @Value("${resend.from.email:noreply@sadiamukhtar.in}")
     private String fromEmail;
 
     public EmailService(RestTemplate restTemplate) {
