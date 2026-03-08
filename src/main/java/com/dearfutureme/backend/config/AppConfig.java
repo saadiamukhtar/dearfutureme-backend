@@ -17,12 +17,19 @@ public class AppConfig {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
-                        .allowedOrigins("*")
+
+                registry.addMapping("/**")
+                        .allowedOriginPatterns(
+                                "https://time-unfolds-ink.lovable.app", // production frontend
+                                "http://localhost:*"                    // local frontend
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*");
+                        .allowedHeaders("*")
+                        .allowCredentials(false)
+                        .maxAge(3600);
             }
         };
     }
