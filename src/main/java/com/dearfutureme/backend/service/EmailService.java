@@ -53,7 +53,7 @@ public class EmailService {
             requestBody.put("subject", "A message from your past self has arrived");
             requestBody.put("html", htmlBody);
 
-            log.info("Sending email via Resend -> from: {}, to: {}", fromEmail, capsule.getEmail());
+            log.info("Sending email FROM: " + fromEmail + " TO: " + capsule.getEmail());
 
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
 
