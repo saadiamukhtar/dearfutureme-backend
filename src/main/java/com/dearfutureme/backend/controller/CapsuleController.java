@@ -27,7 +27,12 @@ public class CapsuleController {
      *
      * Request body:
      * {
-     *   "videoUrl": "https://...",
+     *   "videoUrl": "https://...",    @PostMapping
+     *     public ResponseEntity<CapsuleResponse> createCapsule(@Valid @RequestBody CapsuleRequest request) {
+     *         log.info("POST /api/capsules - creating capsule for {}", request.getEmail());
+     *         CapsuleResponse response = capsuleService.createCapsule(request);
+     *         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+     *     }
      *   "note": "Dear future me...",
      *   "email": "user@example.com",
      *   "deliveryOption": "ONE_MONTH",   // or TWO_MINUTES, FIVE_MINUTES, etc. in test mode

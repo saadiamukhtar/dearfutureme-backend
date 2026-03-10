@@ -23,8 +23,9 @@ public class AppConfig {
 
                 registry.addMapping("/**")
                         .allowedOriginPatterns(
-                                "https://time-unfolds-ink.lovable.app", // production frontend
-                                "http://localhost:*"                    // local frontend
+                                "*"
+//                                "https://time-unfolds-ink.lovable.app", // production frontend
+//                                "http://localhost:*"                    // local frontend
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
