@@ -20,7 +20,7 @@ import java.util.List;
 public class CapsuleService {
 
     private final CapsuleRepository capsuleRepository;
-    private final ClaudeService claudeService;
+    private final GeminiService geminiService;
 
     @Value("${app.test-mode:true}")
     private boolean testMode;
@@ -29,7 +29,7 @@ public class CapsuleService {
      * Creates a new time capsule.
      * - Validates test-mode options are only used in test mode
      * - Calculates the delivery date from the chosen option
-     * - Calls Claude API to generate an AI reflection summary
+     * - Calls gemini API to generate an AI reflection summary
      * - Persists and returns the saved capsule
      */
     @Transactional
@@ -54,9 +54,9 @@ public class CapsuleService {
         capsule.setDeliveryDate(deliveryDate);
         capsule.setPublic(request.isPublic());
 
-        // Generate AI reflection via Claude
+        // Generate AI reflection via gemini
         log.info("Requesting AI reflection for new capsule from {}", request.getEmail());
-        String aiSummary = claudeService.generateReflection(request.getNote());
+        String aiSummary = geminiService.generateReflection(request.getNote());
         if (aiSummary != null) {
             capsule.setAiSummary(aiSummary);
             log.info("AI reflection generated successfully");
