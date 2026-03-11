@@ -43,8 +43,9 @@ public class GeminiService {
                             )
                     ),
                     "generationConfig", Map.of(
-                            "maxOutputTokens", 150,
-                            "temperature", 0.7
+                            "maxOutputTokens", 180,
+                            "temperature", 0.7,
+                            "topP", 0.9
                     )
             );
 
@@ -92,7 +93,7 @@ A person wrote a message to their future self.
 Message:
 %s
 
-Write a short warm reflection (1–2 paragraphs) encouraging their future self.
+Write a short warm reflection. write atleast 1 paragraph encouraging their future self.
 Speak in second person ("you").
 """.formatted(note);
     }
