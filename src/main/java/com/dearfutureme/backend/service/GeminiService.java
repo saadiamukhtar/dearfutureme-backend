@@ -41,6 +41,10 @@ public class GeminiService {
                                             Map.of("text", prompt)
                                     )
                             )
+                    ),
+                    "generationConfig", Map.of(
+                            "maxOutputTokens", 150,
+                            "temperature", 0.7
                     )
             );
 
@@ -83,22 +87,13 @@ public class GeminiService {
 
     private String buildPrompt(String note) {
         return """
-                You are a warm, empathetic AI assistant for an app called "Dear Future Me"
-                — a digital time capsule where people write heartfelt messages to their future selves.
+A person wrote a message to their future self.
 
-                A user has written the following message to their future self:
+Message:
+%s
 
-                ---
-                %s
-                ---
-
-                Please generate a thoughtful, warm reflection (1-2 paragraphs) that:
-                1. Captures the emotional essence and themes of their message
-                2. Gently highlights what this moment in time might mean to their future self
-                3. Offers encouragement and celebrates the beautiful act of writing across time
-
-                Write in second person ("you"), addressing the future self directly.
-                Keep the tone warm, human, and uplifting.
-                """.formatted(note);
+Write a short warm reflection (1–2 paragraphs) encouraging their future self.
+Speak in second person ("you").
+""".formatted(note);
     }
 }
