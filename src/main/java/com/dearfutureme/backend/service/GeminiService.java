@@ -16,7 +16,7 @@ public class GeminiService {
 
     private final RestTemplate restTemplate;
 
-    @Value("${gemini.api.key:}")
+    @Value("${GEMINI_API_KEY:${gemini.api.key:}}")
     private String apiKey;
 
     @Value("${gemini.api.url:https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent}")
